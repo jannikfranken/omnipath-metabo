@@ -1,0 +1,115 @@
+Structure [
+Smiles (unique),
+Mol,
+Is_polymer,
+Has_stereo,
+Has_conformation,
+complete_formula
+]
+
+MetaboliteIdentifier [
+Identifier,
+Id_type,
+]
+
+StructureIdentifier [
+Structure_id,
+Identifier_id,
+]
+
+# lipids: LipidMaps name
+# others: HMDB
+# if not available: name from Reactome
+# maybe also PubChem, ChEMBL, Rxnorm for drugs
+PreferredName [
+Name,
+id_type,
+]
+
+Reaction [
+Smiles,
+]
+
+# participant: a structure, a set of structures, a higher level class, or a protein
+ReactionParticipant [
+ChemicalGroup_id,
+Reaction_id,
+Role (reactant, product, cofactor, enzyme),
+]
+
+ReactionEvidence [
+Reaction_id,
+Evidence_id,
+]
+
+Evidence [
+Resource_id,
+Reference_id,
+Type (experimental, prediction, etc),
+]
+
+# a structure, a set of structures, a higher level class
+# e.g. one structure, or simply “phosphatidylcholine”
+ChemicalGroup [
+
+]
+
+EnzymeClass [
+]
+
+Participant [
+]
+
+Protein [
+Uniprot,
+Genesymbol,
+EnzymeClass_id,
+Organism,
+]
+
+ProteinRole [
+Protein_id,
+Role (enzyme, receptor, transporter),
+]
+
+# PTMs, localization
+# + default / unknown state
+ProteinState [
+
+]
+
+ProteinAttribute [
+Type (ptm, localization, etc),
+Value (“nucleus”, “S321P”),
+]
+
+ProteinStateAttribute [
+ProteinState_id,
+ProteinAttribute_id,
+]
+
+# akgdd
+ReactionCausality [
+Reaction_id,
+Participant_id_a,
+Participant_id_b,
+Effect (stimulation, inhibition),
+]
+
+MetaboliteProteinInteraction [
+ChemicalGroup_id, -> this should be metaboliteIdentifier because a metabolite will have a chemicalgroup
+ProteinGroup_id, -> this does not exist yet, invent it here?
+Effect (activation, inhibition),
+Type (allosteric, ligand-receptor, inhibition),
+]
+
+InteractionEvidence [
+Interaction_id,
+Evidence_id,
+]
+
+# normalize similar to pChembl?
+InteractionBindingAffinity [
+Interaction_id,
+BindingAffinity,
+]
